@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 using AnimalsClassLibrary;
 
 namespace ConsoleThreeCLassesAnimals {
@@ -117,15 +118,15 @@ namespace ConsoleThreeCLassesAnimals {
             string writePath = @"C:\FFiles\write.txt";
             string text = "";
             try {
-                using (StreamReader sr = new StreamReader(readPath, System.Text.Encoding.Default)) {
+                using (StreamReader sr = new StreamReader(readPath, Encoding.Default)) {
                     text = sr.ReadToEnd();
                     Console.WriteLine("Данные из файла\n" + text);
                 }
-                using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default)) {
+                using (StreamWriter sw = new StreamWriter(writePath, false, Encoding.Default)) {
                     sw.WriteLine(text);
                 }
 
-                using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default)) {
+                using (StreamWriter sw = new StreamWriter(writePath, true, Encoding.Default)) {
                     for (int i = 0; i < animals.Length; i++) {
                         sw.WriteLine(animals[i].ID);
                         sw.WriteLine(animals[i].countFood);
@@ -134,8 +135,9 @@ namespace ConsoleThreeCLassesAnimals {
                     }
                 }
             }
-            catch (Exception e) {
-                Console.WriteLine(e.Message);
+            catch {
+                Console.WriteLine("Неверный формат файла");
+                //throw new Exception("Неверный формат файла");
             }
             Console.ReadKey();
         }
